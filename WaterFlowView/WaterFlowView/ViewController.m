@@ -43,12 +43,26 @@
 
 // 每个index位置的cell
 - (OWWaterFlowViewCell *)waterflowView:(OWWaterFlowView *)waterflowView cellAtIndex:(NSUInteger)index{
-    OWWaterFlowViewCell *cell = [[OWWaterFlowViewCell alloc] init];
-    UIImage *image = [UIImage imageNamed:_imagesArr[index]];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    static NSString *reuseIdentifier = @"cell";
+    OWWaterFlowViewCell *cell = [waterflowView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell) {
+        cell = [[OWWaterFlowViewCell alloc] initWithReusableIdentifier:reuseIdentifier];
+    }
+    for (UIView *view in cell.subviews) {
+        [view removeFromSuperview];
+    }
+    
     CGFloat width = (self.view.frame.size.width / 3 - 5.0 * 4 / 3);
+    
+    UIImage *image = [UIImage imageNamed:_imagesArr[index]];
     CGSize size = image.size;
     CGFloat height = size.height * (self.view.frame.size.width / 3 - 5.0 * 4 / 3)/size.width;
+    
+    CGSize scaledSize = CGSizeMake(width * 2.0, height * 2.0);
+    
+    UIImage *scaledImage = [self OriginImage:image scaleToSize:scaledSize];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:scaledImage];
     imageView.frame = CGRectMake(0, 0, width, height);
     [cell addSubview:imageView];
     return cell;
@@ -87,6 +101,21 @@
     CGFloat g = arc4random_uniform(256) / 255.0;
     CGFloat b = arc4random_uniform(256) / 255.0;
     return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+}
+
+
+//等比例缩放
+-(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
 }
 
 @end

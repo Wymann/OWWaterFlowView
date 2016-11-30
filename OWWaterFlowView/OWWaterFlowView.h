@@ -45,4 +45,6 @@ typedef NS_ENUM(NSInteger, OWWaterFlowMarginType) {
 @property (nonatomic, weak) id <OWWaterFlowViewDataSource> dataSource;
 @property (nonatomic, weak) id <OWWaterFlowViewDelegate> delegate;
 
+- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+
 @end

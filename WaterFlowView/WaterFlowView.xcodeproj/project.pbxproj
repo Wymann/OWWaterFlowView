@@ -637,6 +637,7 @@
 				F5E1C5EF1DED0FD1004982A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F5E1C5F01DED0FD1004982A9 /* Build configuration list for PBXNativeTarget "WaterFlowViewTests" */ = {
 			isa = XCConfigurationList;
@@ -645,6 +646,7 @@
 				F5E1C5F21DED0FD1004982A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F5E1C5F31DED0FD1004982A9 /* Build configuration list for PBXNativeTarget "WaterFlowViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -653,6 +655,7 @@
 				F5E1C5F51DED0FD1004982A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
